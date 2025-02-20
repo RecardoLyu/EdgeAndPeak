@@ -6,13 +6,13 @@ function [edge] = get_edge(img_in, bin_arg, edge_width)
 if nargin < 3
     edge_width = 3;
 end
-bin_arg_stack = ["global" "adaptive"];
+bin_arg_stack = {"global", "adaptive"};
 %% Gaussian filter process
 W = fspecial('gaussian', [10, 10], 80);
 img_gaussian = imfilter(img_in, W, 'replicate');
 
 %% Binarize the image
-edge = imbinarize(img_gaussian, bin_arg_stack(bin_arg));
+edge = imbinarize(img_gaussian, bin_arg_stack{bin_arg});
 
 %% BW image morphological operation
 % temp = bwmorph(boundary, "close", Inf);
